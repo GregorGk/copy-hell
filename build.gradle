@@ -12,7 +12,14 @@ repositories {
     mavenCentral()
 }
 
+ext.gradleVersion = '4.4.1'
+
 dependencies {
     compile 'uk.com.robust-it:cloning:1.9.9'
     testCompile 'junit:junit:4.12'
+}
+
+task wrapper(type: Wrapper) {
+    description("Generates gradlew[.bat] scripts")
+    gradleVersion("${gradleVersion}")
 }
