@@ -5,7 +5,7 @@ import org.junit.rules.ErrorCollector;
 import outer.AbstractOuter;
 import outer.DefaultCloneMethodOuter;
 import outer.SerializableCloneMethodOuter;
-import outer.UniversalCloneMethodOuter;
+import outer.MixedCloneMethodOuter;
 import state.NonSerializableState;
 import state.SerializableState;
 import state.StateInterface;
@@ -66,12 +66,12 @@ public class CloneEqualityTest implements EqualityTestInterface {
   }
 
   @Test
-  public void testUniversalCloneMethod() {
+  public void testMixedCloneMethod() {
     AbstractOuter serializableObject =
-        new UniversalCloneMethodOuter(new SerializableState(1), 1);
+        new MixedCloneMethodOuter(new SerializableState(1), 1);
     AbstractOuter clone = null;
     try {
-      clone = ((UniversalCloneMethodOuter) serializableObject).cloneIt();
+      clone = ((MixedCloneMethodOuter) serializableObject).cloneIt();
     } catch (Exception e) {
       collector.addError(e);
     }

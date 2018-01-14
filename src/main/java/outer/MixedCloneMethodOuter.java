@@ -8,12 +8,12 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import state.StateInterface;
 
-public class UniversalCloneMethodOuter extends AbstractOuter {
+public class MixedCloneMethodOuter extends AbstractOuter {
 
-  public UniversalCloneMethodOuter() {
+  public MixedCloneMethodOuter() {
   }
 
-  public UniversalCloneMethodOuter(StateInterface mutableObject, int primitive) {
+  public MixedCloneMethodOuter(StateInterface mutableObject, int primitive) {
     super(mutableObject, primitive);
   }
 
