@@ -3,6 +3,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ErrorCollector;
 import outer.AbstractOuter;
+import outer.ClonerMethodOuter;
 import outer.DefaultCloneMethodOuter;
 import outer.SerializableCloneMethodOuter;
 import outer.MixedCloneMethodOuter;
@@ -84,5 +85,19 @@ public class CloneEqualityTest implements EqualityTestInterface {
     stateObject.setStateVariable(2);
     areEqualByEqualsMethodCall(false, serializableObject, clone, collector);
     areEqualByEqualityOperator(false, serializableObject, clone, collector);
+  }
+
+  @Test
+  public void testClonerMethod() {
+    AbstractOuter withNonSerializableObject =
+        new SerializableCloneMethodOuter(new NonSerializableState(1), 1);
+    AbstractOuter clone = null;
+    try {
+      clone = ((ClonerMethodOuter) withNonSerializableObject).cloneIt();
+    } catch (Exception e) {
+      collector.addError(e);
+    }
+    areEqualByEqualsMethodCall(true, withNonSerializableObject, clone, collector);
+    areEqualByEqualityOperator(false, withNonSerializableObject, clone, collector);
   }
 }
